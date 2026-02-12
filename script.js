@@ -288,7 +288,7 @@ function switchPage(pageId) {
     if (pageId === 'checkout') {
         updateOrderSummary();
         // 重置支付方式选择
-        document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('active'));
+        document.querySelectorAll('.payment-method-text').forEach(m => m.classList.remove('active'));
         document.getElementById('creditCardForm').style.display = 'none';
         document.getElementById('onlineBankingForm').style.display = 'none';
         document.getElementById('ewalletForm').style.display = 'none';
@@ -354,19 +354,28 @@ function initVideoPlayer() {
     }
 }
 
-// ========== 支付方式逻辑 ==========
+// ========== 支付方式逻辑（完全修复版）==========
 function initPaymentMethods() {
-    // 支付方式选择
-    document.querySelectorAll('.payment-method').forEach(method => {
-        method.addEventListener('click', function() {
-            document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('active'));
+    console.log('支付方式初始化成功');
+    
+    // 支付方式选择 - 纯文字版
+    document.querySelectorAll('.payment-method-text').forEach(method => {
+        method.addEventListener('click', function(e) {
+            e.preventDefault();
+            // 移除所有 active 状态
+            document.querySelectorAll('.payment-method-text').forEach(m => m.classList.remove('active'));
+            // 添加 active 状态到当前选择
             this.classList.add('active');
             
+            // 隐藏所有表单
             document.getElementById('creditCardForm').style.display = 'none';
             document.getElementById('onlineBankingForm').style.display = 'none';
             document.getElementById('ewalletForm').style.display = 'none';
             
+            // 显示对应的表单
             const methodType = this.getAttribute('data-method');
+            console.log('选择支付方式:', methodType);
+            
             if (methodType === 'credit') {
                 document.getElementById('creditCardForm').style.display = 'block';
             } else if (methodType === 'online') {
@@ -377,30 +386,167 @@ function initPaymentMethods() {
         });
     });
     
-    // 银行选项选择
-    document.querySelectorAll('.bank-option').forEach(bank => {
-        bank.addEventListener('click', function() {
-            document.querySelectorAll('.bank-option').forEach(b => b.classList.remove('active'));
+    // 银行选项选择 - 纯文字版
+    document.querySelectorAll('.bank-option-text').forEach(bank => {
+        bank.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelectorAll('.bank-option-text').forEach(b => b.classList.remove('active'));
             this.classList.add('active');
-            showNotification(`Selected: ${this.querySelector('p').textContent}`);
+            showNotification(`Selected: ${this.textContent}`);
         });
     });
     
-    // E-wallet 选项选择
-    document.querySelectorAll('.ewallet-option').forEach(wallet => {
-        wallet.addEventListener('click', function() {
-            document.querySelectorAll('.ewallet-option').forEach(w => w.classList.remove('active'));
+    // E-wallet 选项选择 - 纯文字版
+    document.querySelectorAll('.ewallet-option-text').forEach(wallet => {
+        wallet.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelectorAll('.ewallet-option-text').forEach(w => w.classList.remove('active'));
             this.classList.add('active');
-            showNotification(`Selected: ${this.querySelector('p').textContent}`);
+            showNotification(`Selected: ${this.textContent}`);
         });
+    });
+}
+
+// ========== 反馈表单提交 ==========
+function initFeedbackForm() {
+    const submitBtn = document.getElementById('submitFeedbackBtn');
+    if (!submitBtn) return;
+    
+    submitBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const name = document.getElementById('feedbackName')?.value || 'Guest';
+        const email = document.getElementById('feedbackEmail')?.value;
+        const type = document.getElementById('feedbackType')?.value;
+        const message = document.getElementById('feedbackMessage')?.value;
+        
+        if (!message) {
+            showNotification('❌ Please enter your feedback message');
+            return;
+        }
+        
+        if (!type || type === 'Select feedback type') {
+            showNotification('❌ Please select a feedback type');
+            return;
+        }
+        
+        showNotification(`✅ Thank you ${name}! Your feedback has been submitted.`);
+        
+        // 清空表单
+        document.getElementById('feedbackName').value = '';
+        document.getElementById('feedbackEmail').value = '';
+        document.getElementById('feedbackType').value = 'Select feedback type';
+        document.getElementById('feedbackMessage').value = '';
+    });
+}
+
+// ========== 下单按钮（完全修复版）==========
+function initPlaceOrder() {
+    const placeOrderBtn = document.getElementById('placeOrderBtn');
+    if (!placeOrderBtn) return;
+    
+    placeOrderBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        console.log('下单按钮点击');
+        
+        // 1. 检查购物车
+        if (cartItems.length === 0) {
+            showNotification('Your cart is empty!');
+            return;
+        }
+        
+        // 2. 检查姓名
+        const name = document.getElementById('fullName')?.value;
+        if (!name) {
+            showNotification('Please enter your full name');
+            return;
+        }
+        
+        // 3. 检查支付方式 - 修复版！
+        const activePayment = document.querySelector('.payment-method-text.active');
+        console.log('当前支付方式:', activePayment ? activePayment.textContent : '未选择');
+        
+        if (!activePayment) {
+            showNotification('Please select a payment method');
+            return;
+        }
+        
+        const methodType = activePayment.getAttribute('data-method');
+        console.log('支付方式类型:', methodType);
+        
+        // 4. 根据支付方式验证
+        let paymentValid = true;
+        let paymentError = '';
+        
+        if (methodType === 'credit') {
+            const cardNumber = document.getElementById('cardNumber')?.value;
+            const expiryDate = document.getElementById('expiryDate')?.value;
+            const cvv = document.getElementById('cvv')?.value;
+            const cardName = document.getElementById('cardName')?.value;
+            
+            if (!cardNumber || !expiryDate || !cvv || !cardName) {
+                paymentValid = false;
+                paymentError = 'Please fill in all card details';
+            }
+        } else if (methodType === 'online') {
+            const selectedBank = document.querySelector('.bank-option-text.active');
+            if (!selectedBank) {
+                paymentValid = false;
+                paymentError = 'Please select a bank';
+            }
+        } else if (methodType === 'ewallet') {
+            const selectedWallet = document.querySelector('.ewallet-option-text.active');
+            if (!selectedWallet) {
+                paymentValid = false;
+                paymentError = 'Please select an e-wallet';
+            }
+        }
+        
+        if (!paymentValid) {
+            showNotification(paymentError);
+            return;
+        }
+        
+        // 5. 所有验证通过，下单成功！
+        showNotification('✅ Order placed successfully! Thank you for choosing NutriBite.');
+        console.log('订单成功！');
+        
+        // 清空购物车
+        cartItems = [];
+        updateCartCount();
+        
+        // 跳转到首页
+        setTimeout(() => switchPage('home'), 2000);
+    });
+}
+
+// ========== 折扣码 ==========
+function initDiscountCode() {
+    const applyBtn = document.getElementById('applyDiscountBtn');
+    if (!applyBtn) return;
+    
+    applyBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const code = document.getElementById('discountCode')?.value;
+        if (code?.toUpperCase() === 'NUTRI20') {
+            showNotification('✅ Promo applied! 20% discount');
+            document.getElementById('discountRow').style.display = 'flex';
+            updateOrderSummary();
+        } else {
+            showNotification('❌ Invalid promo code');
+        }
     });
 }
 
 // ========== 初始化 ==========
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('NutriBite 网站初始化');
+    
     updateCartCount();
     initVideoPlayer();
-    initPaymentMethods();
+    initPaymentMethods();  // 支付方式
+    initFeedbackForm();    // 反馈表单
+    initPlaceOrder();      // 下单按钮
+    initDiscountCode();    // 折扣码
     
     // 导航链接点击
     document.querySelectorAll('.nav-link, [data-page]').forEach(link => {
@@ -429,77 +575,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // 折扣码
-    document.getElementById('applyDiscountBtn')?.addEventListener('click', function() {
-        const code = document.getElementById('discountCode')?.value;
-        if (code?.toUpperCase() === 'NUTRI20') {
-            showNotification('✅ Promo applied! 20% discount');
-            document.getElementById('discountRow').style.display = 'flex';
-            updateOrderSummary();
-        } else {
-            showNotification('❌ Invalid promo code');
-        }
-    });
-    
-    // 下单按钮
-    document.getElementById('placeOrderBtn')?.addEventListener('click', function() {
-        if (cartItems.length === 0) {
-            showNotification('Your cart is empty!');
-            return;
-        }
-        
-        const name = document.getElementById('fullName')?.value;
-        if (!name) {
-            showNotification('Please enter your full name');
-            return;
-        }
-        
-        const activePayment = document.querySelector('.payment-method.active');
-        if (!activePayment) {
-            showNotification('Please select a payment method');
-            return;
-        }
-        
-        const methodType = activePayment.getAttribute('data-method');
-        
-        if (methodType === 'credit') {
-            const cardNumber = document.getElementById('cardNumber')?.value;
-            const expiryDate = document.getElementById('expiryDate')?.value;
-            const cvv = document.getElementById('cvv')?.value;
-            const cardName = document.getElementById('cardName')?.value;
-            
-            if (!cardNumber || !expiryDate || !cvv || !cardName) {
-                showNotification('Please fill in all card details');
-                return;
-            }
-        } else if (methodType === 'online') {
-            const selectedBank = document.querySelector('.bank-option.active');
-            if (!selectedBank) {
-                showNotification('Please select a bank');
-                return;
-            }
-        } else if (methodType === 'ewallet') {
-            const selectedWallet = document.querySelector('.ewallet-option.active');
-            if (!selectedWallet) {
-                showNotification('Please select an e-wallet');
-                return;
-            }
-        }
-        
-        showNotification('✅ Order placed successfully! Thank you for choosing NutriBite.');
-        
-        cartItems = [];
-        updateCartCount();
-        
-        setTimeout(() => switchPage('home'), 2000);
-    });
-    
-    // 下载收据
-    document.getElementById('downloadReceiptBtn')?.addEventListener('click', function(e) {
-        e.preventDefault();
-        downloadReceipt();
-    });
-    
     // 社交链接点击
     document.querySelectorAll('.social-link').forEach(link => {
         link.addEventListener('click', function(e) {
@@ -510,117 +585,3 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-// ========== 在文件末尾添加这个函数 ==========
-
-// ========== 反馈表单提交 ==========
-function initFeedbackForm() {
-    const submitBtn = document.getElementById('submitFeedbackBtn');
-    if (!submitBtn) return;
-    
-    submitBtn.addEventListener('click', function() {
-        const name = document.getElementById('feedbackName')?.value || 'Guest';
-        const email = document.getElementById('feedbackEmail')?.value;
-        const type = document.getElementById('feedbackType')?.value;
-        const message = document.getElementById('feedbackMessage')?.value;
-        
-        if (!message) {
-            showNotification('❌ Please enter your feedback message');
-            return;
-        }
-        
-        if (!type || type === 'Select feedback type') {
-            showNotification('❌ Please select a feedback type');
-            return;
-        }
-        
-        showNotification(`✅ Thank you ${name}! Your feedback has been submitted.`);
-        
-        // 清空表单
-        document.getElementById('feedbackName').value = '';
-        document.getElementById('feedbackEmail').value = '';
-        document.getElementById('feedbackType').value = 'Select feedback type';
-        document.getElementById('feedbackMessage').value = '';
-    });
-}
-
-// ========== 修改支付方式初始化函数 ==========
-function initPaymentMethods() {
-    // 支付方式选择 - 纯文字版
-    document.querySelectorAll('.payment-method-text').forEach(method => {
-        method.addEventListener('click', function() {
-            document.querySelectorAll('.payment-method-text').forEach(m => m.classList.remove('active'));
-            this.classList.add('active');
-            
-            document.getElementById('creditCardForm').style.display = 'none';
-            document.getElementById('onlineBankingForm').style.display = 'none';
-            document.getElementById('ewalletForm').style.display = 'none';
-            
-            const methodType = this.getAttribute('data-method');
-            if (methodType === 'credit') {
-                document.getElementById('creditCardForm').style.display = 'block';
-            } else if (methodType === 'online') {
-                document.getElementById('onlineBankingForm').style.display = 'block';
-            } else if (methodType === 'ewallet') {
-                document.getElementById('ewalletForm').style.display = 'block';
-            }
-        });
-    });
-    
-    // 银行选项选择 - 纯文字版
-    document.querySelectorAll('.bank-option-text').forEach(bank => {
-        bank.addEventListener('click', function() {
-            document.querySelectorAll('.bank-option-text').forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
-            showNotification(`Selected: ${this.textContent}`);
-        });
-    });
-    
-    // E-wallet 选项选择 - 纯文字版
-    document.querySelectorAll('.ewallet-option-text').forEach(wallet => {
-        wallet.addEventListener('click', function() {
-            document.querySelectorAll('.ewallet-option-text').forEach(w => w.classList.remove('active'));
-            this.classList.add('active');
-            showNotification(`Selected: ${this.textContent}`);
-        });
-    });
-}
-
-// ========== 修改下单按钮验证 ==========
-// 在 placeOrderBtn 的 click 事件中，找到支付方式验证部分，替换为：
-
-// 在原有的 placeOrderBtn 事件监听器中，修改这部分代码：
-
-/*
-// 下单按钮验证部分 - 替换原来的验证代码
-const activePayment = document.querySelector('.payment-method-text.active');
-if (!activePayment) {
-    showNotification('Please select a payment method');
-    return;
-}
-
-const methodType = activePayment.getAttribute('data-method');
-
-if (methodType === 'credit') {
-    // ... 原有的信用卡验证
-} else if (methodType === 'online') {
-    const selectedBank = document.querySelector('.bank-option-text.active');
-    if (!selectedBank) {
-        showNotification('Please select a bank');
-        return;
-    }
-} else if (methodType === 'ewallet') {
-    const selectedWallet = document.querySelector('.ewallet-option-text.active');
-    if (!selectedWallet) {
-        showNotification('Please select an e-wallet');
-        return;
-    }
-}
-*/
-
-// ========== 在 DOMContentLoaded 中添加反馈表单初始化 ==========
-// 找到 document.addEventListener('DOMContentLoaded', function() { ... })
-// 在里面添加这一行：
-
-/*
-initFeedbackForm();
-*/
