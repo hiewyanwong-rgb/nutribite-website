@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriBite Malaysia - Fresh. Balanced. Ready in Minutes.</title>
+    <!-- Font Awesome 图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 外部 CSS 文件 -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ===== 导航栏 ===== -->
+    <header>
+        <div class="container header-container">
+            <div class="logo" id="homeLogo">
+                <h1>Nutri<span>Bite</span></h1>
+                <span class="slogan">Malaysia</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="nav-link active" data-page="home">Home</a></li>
+                    <li><a href="#" class="nav-link" data-page="products">Products</a></li>
+                    <li><a href="#" class="nav-link cart-icon" data-page="cart">Cart <span class="cart-count">0</span></a></li>
+                    <li><a href="#" class="nav-link" data-page="policies">Policies</a></li>
+                    <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===== 通知 ===== -->
+    <div class="notification" id="notification">
+        <i class="fas fa-check-circle"></i>
+        <span id="notificationText">Added to cart!</span>
+    </div>
+
+    <!-- ===== HOME PAGE ===== -->
+    <section id="home" class="page active">
+        <!-- 主页横幅 -->
+        <div class="hero-banner" style="background-image: linear-gradient(135deg, rgba(27,77,62,0.92), rgba(46,125,94,0.88)), url('images/hero-banner.jpg');">
+            <div class="container hero-content">
+                <h2>NutriBite – Fresh. Balanced. Ready in Minutes.</h2>
+                <p>Ready-to-heat healthy meal bowls for modern Malaysians</p>
+                <a href="#" class="cta-button" id="viewProductsBtn">Shop Now →</a>
+            </div>
+        </div>
+
+        <!-- 视频区域 -->
+        <div class="video-section">
+            <div class="container">
+                <div class="video-container">
+                    <h3>NutriBite</h3>
+                    <div class="custom-video-player">
+                        <video id="nutribiteVideo" controls poster="images/product-chicken.jpg">
+                            <source src="videos/nutribite-brand.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-controls">
+                            <div class="video-controls-left">
+                                <button class="video-btn" id="playPauseBtn">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                                <button class="video-btn" id="stopBtn">
+                                    <i class="fas fa-stop"></i>
+                                </button>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <i class="fas fa-volume-up" style="color: var(--primary-green);"></i>
+                                    <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.1" value="1">
+                                </div>
+                            </div>
+                            <div class="video-controls-right">
+                                <span class="time-display" id="timeDisplay">0:00 / 0:00</span>
+                                <button class="video-btn" id="fullscreenBtn">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="video-description">Watch how NutriBite brings fresh, balanced meals to your table in minutes.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 关于我们 -->
+        <div class="about-section">
+            <div class="container">
+                <div class="about-grid">
+                    <div class="about-content">
+                        <span class="about-badge">🇲🇾 Since 2024</span>
+                        <h2>NutriBite Malaysia</h2>
+                        <p style="font-size: 1.2rem; font-weight: 500; color: var(--primary-green); margin-bottom: 20px;">Fresh. Balanced. Ready in Minutes.</p>
+                        
+                        <div class="company-background">
+                            <h4>About NutriBite</h4>
+                            <p style="margin-bottom: 15px;"><strong>NutriBite Malaysia is a ready-to-heat healthy meal bowl brand designed for modern lifestyles.</strong> Established in 2024, we specialise in freshly prepared, chilled meal bowls that can be stored in the refrigerator and heated in just 3–5 minutes.</p>
+                            <p>Each bowl is carefully portioned to provide balanced nutrition — including lean protein, quality carbohydrates, and fresh vegetables — all in one convenient meal.</p>
+                        </div>
+                        
+                        <!-- 目标顾客 -->
+                        <div class="target-customer-box">
+                            <div class="target-customer-header">
+                                <div class="target-customer-icon"><i class="fas fa-users"></i></div>
+                                <h3 class="target-customer-title">Who We Serve</h3>
+                            </div>
+                            <p class="target-customer-desc">NutriBite is created for busy professionals, university students, and individuals who want to maintain a healthy lifestyle without spending hours cooking.</p>
+                            <div class="customer-types">
+                                <div class="customer-type"><i class="fas fa-briefcase"></i><p>Professionals</p></div>
+                                <div class="customer-type"><i class="fas fa-graduation-cap"></i><p>University Students</p></div>
+                                <div class="customer-type"><i class="fas fa-heart"></i><p>Health-conscious</p></div>
+                            </div>
+                        </div>
+                        
+                        <div class="mission-vision">
+                            <div class="mission-box"><h4>🌱 Our Mission</h4><p>To provide convenient, affordable, and nutritionally balanced ready-to-heat meal bowls for busy Malaysians.</p></div>
+                            <div class="vision-box"><h4>🌎 Our Vision</h4><p>To become Malaysia's trusted digital brand for ready-to-eat healthy meal solutions.</p></div>
+                        </div>
+                        
+                        <div class="stats">
+                            <div class="stat"><div class="stat-number">3-5</div><div class="stat-label">Minutes to heat</div></div>
+                            <div class="stat"><div class="stat-number">12+</div><div class="stat-label">Healthy bowls</div></div>
+                            <div class="stat"><div class="stat-number">5k+</div><div class="stat-label">Happy customers</div></div>
+                        </div>
+                    </div>
+                    
+                    <div class="about-image">
+                        <img src="images/about-product.jpg" alt="NutriBite fresh meal bowl">
+                        <div class="about-image-badge">
+                            <i class="fas fa-warehouse"></i>
+                            <div><strong style="font-size: 1.2rem; color: var(--primary-green);">Est. 2024</strong><p style="color: var(--text-light);">Malaysian brand</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 客户评价 -->
+        <div style="padding: 60px 0; background: var(--white);">
+            <div class="container">
+                <div style="text-align: center; max-width: 900px; margin: 0 auto;">
+                    <h2 style="color: var(--primary-green); font-size: 2rem; margin-bottom: 40px;">What Our Customers Say</h2>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;">
+                        <div style="background: #F8F9FA; padding: 30px; border-radius: 24px;">
+                            <div style="color: #FFB74D; margin-bottom: 15px; font-size: 1.2rem;">★★★★★</div>
+                            <p style="font-style: italic;">"Perfect for office lunch. I stock up every week!"</p>
+                            <p style="margin-top: 15px; font-weight: 600;">— Sarah, KL</p>
+                        </div>
+                        <div style="background: #F8F9FA; padding: 30px; border-radius: 24px;">
+                            <div style="color: #FFB74D; margin-bottom: 15px; font-size: 1.2rem;">★★★★☆</div>
+                            <p style="font-style: italic;">"Good taste, very convenient!"</p>
+                            <p style="margin-top: 15px; font-weight: 600;">— Ahmad, Penang</p>
+                        </div>
+                        <div style="background: #F8F9FA; padding: 30px; border-radius: 24px;">
+                            <div style="color: #FFB74D; margin-bottom: 15px; font-size: 1.2rem;">★★★★★</div>
+                            <p style="font-style: italic;">"The Sambal Fish is amazing!"</p>
+                            <p style="margin-top: 15px; font-weight: 600;">— Mei Ling, Johor</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PRODUCTS PAGE ===== -->
+    <section id="products" class="page">
+        <div class="container">
+            <div class="section-header">
+                <h2>Ready-to-Heat Meal Bowls</h2>
+                <p>Store in fridge • Microwave 3–5 minutes • Balanced nutrition</p>
+            </div>
+            
+            <div class="promotion-banner">
+                <i class="fas fa-tag"></i> Limited Time: 20% OFF when you buy any 3 bowls! 
+                <span class="promo-code">Use code: NUTRI20</span>
+            </div>
+            
+            <div class="products-grid">
+                <!-- 产品1：Grilled Chicken Brown Rice - 有货 -->
+                <div class="product-card">
+                    <span class="product-badge">🔥 Bestseller</span>
+                    <div class="product-image-container">
+                        <div class="product-image" style="background-image: url('images/product-chicken.jpg');"></div>
+                        <div class="product-logo-watermark"><i class="fas fa-leaf"></i> NutriBite</div>
+                        <div class="chilled-badge"><i class="fas fa-snowflake"></i> Keep chilled • 3 mins</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Grilled Chicken Brown Rice</h3>
+                        <div class="product-rating"><span class="stars">★★★★★</span><span style="color: var(--text-light);">(128)</span></div>
+                        <div class="nutrition-info">
+                            <div class="nutrition-item"><span class="nutrition-value">350</span><div class="nutrition-label">cal</div></div>
+                            <div class="nutrition-item"><span class="nutrition-value">32g</span><div class="nutrition-label">protein</div></div>
+                            <div class="nutrition-item"><span class="nutrition-value">12g</span><div class="nutrition-label">fat</div></div>
+                        </div>
+                        <div class="price-section">
+                            <div><span class="price">16.90</span><span class="original-price">RM21.90</span></div>
+                            <span class="availability in-stock">✓ In Stock</span>
+                        </div>
+                        <button class="add-to-cart-btn" data-product="Grilled Chicken Brown Rice" data-price="16.90"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- 产品2：Teriyaki Chicken + Broccoli - 有货 -->
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <div class="product-image" style="background-image: url('images/product-teriyaki.jpg');"></div>
+                        <div class="product-logo-watermark"><i class="fas fa-leaf"></i> NutriBite</div>
+                        <div class="chilled-badge"><i class="fas fa-snowflake"></i> Keep chilled • 3 mins</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Teriyaki Chicken + Broccoli</h3>
+                        <div class="product-rating"><span class="stars">★★★★½</span><span style="color: var(--text-light);">(94)</span></div>
+                        <div class="nutrition-info">
+                            <div class="nutrition-item"><span class="nutrition-value">380</span><div class="nutrition-label">cal</div></div>
+                            <div class="nutrition-item"><span class="nutrition-value">28g</span><div class="nutrition-label">protein</div></div>
+                            <div class="nutrition-item"><span class="nutrition-value">14g</span><div class="nutrition-label">fat</div></div>
+                        </div>
+                        <div class="price-section">
+                            <div><span class="price">17.90</span><span class="original-price">RM22.90</span></div>
+                            <span class="availability in-stock">✓ In Stock</span>
+                        </div>
+                        <button class="add-to-cart-btn" data-product="Teriyaki Chicken + Broccoli" data-price="17.90"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- 产品3：Sambal Grilled Fish + Quinoa - 缺货示范！ -->
+                <div class="product-card">
+                    <span class="product-badge out-of-stock-badge">😢 Sold Out</span>
+                    <div class="product-image-container">
+                        <div class="product-image" style="background-image: url('images/product-sambal.jpg'); opacity: 0.7;"></div>
+                        <div class="product-logo-watermark"><i class="fas fa-leaf"></i> NutriBite</div>
+                        <div class="chilled-badge"><i class="fas fa-snowflake"></i> Keep chilled • 4 mins</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Sambal Grilled Fish + Quinoa</h3>
+                        <div class="product-rating"><span class="stars">★★★★☆</span><span style="color: var(--text-light);">(67)</span></div>
+                        <div class="nutrition-info">
+                            <div class="nutrition-item"><span class="nutrition-value">390</span><div class="nutrition-label">cal</div></div>
+                            <div class="nutrition-item"><span class="nutrition-value">34g</span><div class="nutrition-label">protein</div></div>
+                            <div class="nutrition-item"><span class="nutrition-value">16g</span><div class="nutrition-label">fat</div></div>
+                        </div>
+                        <div class="price-section">
+                            <div><span class="price">18.90</span><span class="original-price">RM23.90</span></div>
+                            <span class="availability out-of-stock">✗ Out of Stock</span>
+                        </div>
+                        <button class="add-to-cart-btn disabled" disabled><i class="fas fa-ban"></i> Out of Stock</button>
+                    </div>
+                </div>
+                
+                <!-- 产品4：Low-Calorie Veggie Bowl - 有货 -->
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <div class="product-image" style="background-image: url('images/product-veggie.jpg');"></div>
+                        <div class="product-logo-watermark"><i class="fas fa-leaf"></i> NutriBite</div>
+                        <div class="chilled-badge"><i class="fas fa-snowflake"></i> Keep chilled • 3 mins</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Low-Calorie Veggie Bowl</h3>
+                        <div class="product-rating"><span class="stars">★★★★½</span><span style="color: var(--text-light);">(52)</span></div>
+                        <div class="nutrition-info">
+                            <div class="nutrition-item"><span class="nutrition-value">280</span><div class="nutrition-label">cal</div></div>
+                            <div class="nutrition-item"><span class="nutrition-value">12g</span><div class="nutrition-label">protein</div></div>
+                            <div class="nutrition-item"><span class="nutrition-value">8g</span><div class="nutrition-label">fat</div></div>
+                        </div>
+                        <div class="price-section">
+                            <div><span class="price">15.90</span><span class="original-price">RM19.90</span></div>
+                            <span class="availability in-stock">✓ In Stock</span>
+                        </div>
+                        <button class="add-to-cart-btn" data-product="Low-Calorie Veggie Bowl" data-price="15.90"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- 产品5：Rendang Chicken Bowl - 有货 -->
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <div class="product-image" style="background-image: url('images/product-rendang.jpg');"></div>
+                        <div class="product-logo-watermark"><i class="fas fa-leaf"></i> NutriBite</div>
+                        <div class="chilled-badge"><i class="fas fa-snowflake"></i> Keep chilled • 4 mins</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Rendang Chicken Bowl</h3>
+                        <div class="product-rating"><span class="stars">★★★★☆</span><span style="color: var(--text-light);">(43)</span></div>
+                        <div class="nutrition-info">
+                            <div class="nutrition-item"><span class="nutrition-value">410</span><div class="nutrition-label">cal</div></div>
+                            <div class="nutrition-item"><span class="nutrition-value">30g</span><div class="nutrition-label">protein</div></div>
+                            <div class="nutrition-item"><span class="nutrition-value">18g</span><div class="nutrition-label">fat</div></div>
+                        </div>
+                        <div class="price-section">
+                            <div><span class="price">19.90</span><span class="original-price">RM24.90</span></div>
+                            <span class="availability in-stock">✓ In Stock</span>
+                        </div>
+                        <button class="add-to-cart-btn" data-product="Rendang Chicken Bowl" data-price="19.90"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- 产品6：Lemon Butter Salmon - 有货 -->
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <div class="product-image" style="background-image: url('images/product-salmon.jpg');"></div>
+                        <div class="product-logo-watermark"><i class="fas fa-leaf"></i> NutriBite</div>
+                        <div class="chilled-badge"><i class="fas fa-snowflake"></i> Keep chilled • 4 mins</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Lemon Butter Salmon</h3>
+                        <div class="product-rating"><span class="stars">★★★★★</span><span style="color: var(--text-light);">(81)</span></div>
+                        <div class="nutrition-info">
+                            <div class="nutrition-item"><span class="nutrition-value">420</span><div class="nutrition-label">cal</div></div>
+                            <div class="nutrition-item"><span class="nutrition-value">35g</span><div class="nutrition-label">protein</div></div>
+                            <div class="nutrition-item"><span class="nutrition-value">22g</span><div class="nutrition-label">fat</div></div>
+                        </div>
+                        <div class="price-section">
+                            <div><span class="price">22.90</span><span class="original-price">RM28.90</span></div>
+                            <span class="availability in-stock">✓ In Stock</span>
+                        </div>
+                        <button class="add-to-cart-btn" data-product="Lemon Butter Salmon" data-price="22.90"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CART PAGE ===== -->
+    <section id="cart" class="page">
+        <div class="container cart-section">
+            <div class="section-header">
+                <h2>Your Shopping Cart</h2>
+                <p>Review your items before checkout</p>
+            </div>
+            <div class="cart-container" id="cartContainer"></div>
+        </div>
+    </section>
+
+    <!-- ===== CHECKOUT PAGE ===== -->
+    <section id="checkout" class="page">
+        <div class="container checkout-section">
+            <div class="section-header">
+                <h2>Checkout</h2>
+                <p>Complete your order in 2 minutes</p>
+            </div>
+            
+            <div class="checkout-grid">
+                <div class="checkout-form">
+                    <div class="form-title"><i class="fas fa-truck"></i> Delivery Information</div>
+                    
+                    <div class="form-group"><label>Full Name</label><input type="text" id="fullName" placeholder="e.g. Ahmad bin Abdullah"></div>
+                    
+                    <div class="form-row">
+                        <div class="form-group"><label>Email</label><input type="email" id="email" placeholder="ahmad@example.com"></div>
+                        <div class="form-group"><label>Phone</label><input type="tel" id="phone" placeholder="012-3456789"></div>
+                    </div>
+                    
+                    <div class="form-group"><label>Address</label><input type="text" id="address" placeholder="Street address, building, unit"></div>
+                    
+                    <div class="form-row">
+                        <div class="form-group"><label>City</label><input type="text" id="city" placeholder="e.g. Kuala Lumpur"></div>
+                        <div class="form-group"><label>State</label>
+                            <select id="state">
+                                <option>Select state</option>
+                                <option>Johor</option><option>Kedah</option><option>Kelantan</option><option>Kuala Lumpur</option>
+                                <option>Melaka</option><option>Negeri Sembilan</option><option>Pahang</option><option>Penang</option>
+                                <option>Perak</option><option>Perlis</option><option>Sabah</option><option>Sarawak</option>
+                                <option>Selangor</option><option>Terengganu</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group"><label>Postcode</label><input type="text" id="postcode" placeholder="e.g. 50400"></div>
+                    </div>
+                    
+                    <div class="form-group"><label>Order Notes (Optional)</label><textarea id="notes" rows="3" placeholder="Special instructions, delivery timing, etc."></textarea></div>
+                    
+                    <!-- 支付方式 - 纯文字选项，无图片 -->
+                    <div style="margin: 30px 0;">
+                        <label style="font-size: 1rem; margin-bottom: 15px; display: block;">Payment Method</label>
+                        <div class="payment-methods-text">
+                            <div class="payment-method-text" data-method="credit">
+                                <i class="fas fa-credit-card"></i> Credit/Debit Card
+                            </div>
+                            <div class="payment-method-text" data-method="online">
+                                <i class="fas fa-university"></i> Online Banking
+                            </div>
+                            <div class="payment-method-text" data-method="ewallet">
+                                <i class="fas fa-mobile-alt"></i> E-wallet
+                            </div>
+                        </div>
+                        
+                        <!-- Credit Card 详细表单 -->
+                        <div id="creditCardForm" style="display: none; margin-top: 20px; padding: 20px; background: #f8f9fa; border-radius: 16px;">
+                            <h4 style="color: var(--primary-green); margin-bottom: 15px;">💳 Card Details</h4>
+                            <div class="form-group"><label>Card Number</label><input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19"></div>
+                            <div class="form-row">
+                                <div class="form-group"><label>Expiry Date</label><input type="text" id="expiryDate" placeholder="MM/YY" maxlength="5"></div>
+                                <div class="form-group"><label>CVV</label><input type="text" id="cvv" placeholder="123" maxlength="3"></div>
+                            </div>
+                            <div class="form-group"><label>Cardholder Name</label><input type="text" id="cardName" placeholder="As on card"></div>
+                        </div>
+                        
+                        <!-- Online Banking 银行选择 - 纯文字 -->
+                        <div id="onlineBankingForm" style="display: none; margin-top: 20px; padding: 20px; background: #f8f9fa; border-radius: 16px;">
+                            <h4 style="color: var(--primary-green); margin-bottom: 15px;">🏦 Select Your Bank</h4>
+                            <div class="bank-options-text">
+                                <div class="bank-option-text" data-bank="maybank">Maybank</div>
+                                <div class="bank-option-text" data-bank="cimb">CIMB</div>
+                                <div class="bank-option-text" data-bank="public">Public Bank</div>
+                                <div class="bank-option-text" data-bank="rhb">RHB</div>
+                                <div class="bank-option-text" data-bank="hongleong">Hong Leong</div>
+                                <div class="bank-option-text" data-bank="ambank">AmBank</div>
+                            </div>
+                        </div>
+                        
+                        <!-- E-wallet 选择 - 纯文字，无图片 -->
+                        <div id="ewalletForm" style="display: none; margin-top: 20px; padding: 20px; background: #f8f9fa; border-radius: 16px;">
+                            <h4 style="color: var(--primary-green); margin-bottom: 15px;">📱 Select E-wallet</h4>
+                            <div class="ewallet-options-text">
+                                <div class="ewallet-option-text" data-ewallet="tng">Touch 'n Go</div>
+                                <div class="ewallet-option-text" data-ewallet="grabpay">GrabPay</div>
+                                <div class="ewallet-option-text" data-ewallet="shopeepay">ShopeePay</div>
+                                <div class="ewallet-option-text" data-ewallet="mae">MAE</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin: 30px 0;">
+                        <label>Discount Code</label>
+                        <div class="discount-code">
+                            <input type="text" id="discountCode" placeholder="Enter promo code">
+                            <button class="apply-btn" id="applyDiscountBtn">Apply</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 订单摘要 -->
+                <div class="order-summary">
+                    <h3 style="color: var(--primary-green); margin-bottom: 25px; font-size: 1.5rem;">Order Summary</h3>
+                    <div class="summary-items" id="orderSummaryItems"></div>
+                    <div class="summary-line"><span>Subtotal</span><span id="summarySubtotal">RM0.00</span></div>
+                    <div class="summary-line"><span>Delivery Fee</span><span>RM6.00</span></div>
+                    <div class="summary-line" id="discountRow" style="display: none;"><span>Discount (NUTRI20)</span><span id="discountAmount">-RM0.00</span></div>
+                    <div class="summary-total"><span>Total</span><span id="summaryTotal">RM0.00</span></div>
+                    
+                    <button class="place-order-btn" id="placeOrderBtn"><i class="fas fa-lock"></i> Place Order</button>
+                    <div class="download-receipt" id="downloadReceiptBtn"><i class="fas fa-download"></i> Download Receipt</div>
+                    <p style="text-align: center; color: var(--text-light); font-size: 0.8rem; margin-top: 20px;">By placing your order, you agree to our <a href="#" data-page="policies" style="color: var(--primary-green); font-weight: 600;">Policies</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== POLICIES PAGE ===== -->
+    <section id="policies" class="page">
+        <div class="container policy-section">
+            <div class="section-header">
+                <h2>Our Policies</h2>
+                <p style="color: var(--text-light);">Transparent, fair, and customer-focused</p>
+            </div>
+            
+            <div class="policy-grid">
+                <!-- 1. Shipping Policy -->
+                <div class="policy-card">
+                    <div class="policy-icon"><i class="fas fa-shipping-fast"></i></div>
+                    <h3>Shipping Policy</h3>
+                    <p>Delivery is available within Malaysia only.</p>
+                    <ul class="policy-list">
+                        <li><i class="fas fa-check-circle"></i> Orders processed within 1–2 working days</li>
+                        <li><i class="fas fa-check-circle"></i> Estimated delivery: 2–5 working days</li>
+                        <li><i class="fas fa-check-circle"></i> Delivery fees calculated at checkout</li>
+                        <li><i class="fas fa-check-circle"></i> Tracking information provided after confirmation</li>
+                    </ul>
+                    <div class="policy-note"><i class="fas fa-exclamation-triangle"></i> NutriBite is not responsible for delays caused by third-party logistics providers.</div>
+                </div>
+                
+                <!-- 2. Returns & Refunds -->
+                <div class="policy-card">
+                    <div class="policy-icon"><i class="fas fa-undo-alt"></i></div>
+                    <h3>Returns & Refunds</h3>
+                    <p>Due to the nature of food products, returns are not accepted once delivered.</p>
+                    <ul class="policy-list">
+                        <li><i class="fas fa-check-circle"></i> Refunds only if: wrong item delivered / damaged or spoiled upon arrival</li>
+                        <li><i class="fas fa-check-circle"></i> Report issues within 24 hours of delivery</li>
+                        <li><i class="fas fa-check-circle"></i> Photo evidence may be required</li>
+                        <li><i class="fas fa-check-circle"></i> Approved refunds processed within 5–7 working days</li>
+                    </ul>
+                </div>
+                
+                <!-- 3. Payment Terms -->
+                <div class="policy-card">
+                    <div class="policy-icon"><i class="fas fa-credit-card"></i></div>
+                    <h3>Payment Terms</h3>
+                    <ul class="policy-list">
+                        <li><i class="fas fa-check-circle"></i> Debit / Credit Card</li>
+                        <li><i class="fas fa-check-circle"></i> Online Banking</li>
+                        <li><i class="fas fa-check-circle"></i> E-wallet (Touch 'n Go, GrabPay, ShopeePay, MAE)</li>
+                        <li><i class="fas fa-check-circle"></i> Full payment required before order processing</li>
+                        <li><i class="fas fa-check-circle"></i> All prices in Malaysian Ringgit (RM)</li>
+                    </ul>
+                </div>
+                
+                <!-- 4. Privacy Policy -->
+                <div class="policy-card">
+                    <div class="policy-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Privacy Policy</h3>
+                    <ul class="policy-list">
+                        <li><i class="fas fa-check-circle"></i> We collect name, address, phone, email for order processing</li>
+                        <li><i class="fas fa-check-circle"></i> Customer data will not be shared with third parties without consent</li>
+                        <li><i class="fas fa-check-circle"></i> Secure payment gateways protect financial information</li>
+                        <li><i class="fas fa-check-circle"></i> Cookies may be used to improve user experience</li>
+                        <li><i class="fas fa-check-circle"></i> Customers may request access to or correction of personal data</li>
+                    </ul>
+                    <div class="policy-note"><i class="fas fa-lock"></i> Your data is protected with us.</div>
+                </div>
+                
+                <!-- 5. Product & Stock Policy -->
+                <div class="policy-card">
+                    <div class="policy-icon"><i class="fas fa-box"></i></div>
+                    <h3>Product & Stock Policy</h3>
+                    <ul class="policy-list">
+                        <li><i class="fas fa-check-circle"></i> Product availability subject to stock levels</li>
+                        <li><i class="fas fa-check-circle"></i> Out of stock items: immediate notification</li>
+                        <li><i class="fas fa-check-circle"></i> Nutritional information for reference purposes</li>
+                        <li><i class="fas fa-check-circle"></i> Product images are for illustration purposes only</li>
+                        <li><i class="fas fa-check-circle"></i> Ingredients may vary slightly depending on supplier availability</li>
+                    </ul>
+                </div>
+                
+                <!-- 6. General Terms -->
+                <div class="policy-card">
+                    <div class="policy-icon"><i class="fas fa-file-contract"></i></div>
+                    <h3>General Terms</h3>
+                    <ul class="policy-list">
+                        <li><i class="fas fa-check-circle"></i> By using this website, customers agree to the terms and conditions stated</li>
+                        <li><i class="fas fa-check-circle"></i> NutriBite reserves the right to modify policies at any time</li>
+                        <li><i class="fas fa-check-circle"></i> Misuse of the website may result in restricted access</li>
+                        <li><i class="fas fa-check-circle"></i> All content on the website is the property of NutriBite</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Policy Flow Chart -->
+            <div style="margin-top: 60px; padding: 30px; background: white; border-radius: 28px; box-shadow: var(--shadow);">
+                <h3 style="color: var(--primary-green); margin-bottom: 20px; text-align: center;">Policy Overview</h3>
+                <div style="display: flex; justify-content: center; align-items: center; gap: 15px; flex-wrap: wrap;">
+                    <span style="background: var(--primary-green); color: white; padding: 10px 20px; border-radius: 40px;">Home Page</span>
+                    <i class="fas fa-arrow-down"></i>
+                    <span style="background: var(--primary-green); color: white; padding: 10px 20px; border-radius: 40px;">Footer</span>
+                    <i class="fas fa-arrow-down"></i>
+                    <span style="background: var(--primary-green); color: white; padding: 10px 20px; border-radius: 40px;">Policies Page</span>
+                    <i class="fas fa-arrow-down"></i>
+                    <span style="background: var(--light-green); color: white; padding: 10px 20px; border-radius: 40px;">6 Policies</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACT & FEEDBACK PAGE ===== -->
+    <section id="contact" class="page">
+        <div class="container contact-section">
+            <div class="section-header">
+                <h2>Contact & Support</h2>
+                <p>We're here to help, 7 days a week</p>
+            </div>
+            
+            <div class="contact-grid">
+                <div class="contact-info-card">
+                    <h2>Get in Touch</h2>
+                    
+                    <div class="contact-detail-item">
+                        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div><h4>Address</h4><p style="color: var(--text-light);">Tech Park, Cyberjaya, 63000 Selangor, Malaysia</p></div>
+                    </div>
+                    
+                    <div class="contact-detail-item">
+                        <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                        <div><h4>Phone</h4><p style="color: var(--text-light);">+60 3-1234 5678</p></div>
+                    </div>
+                    
+                    <div class="contact-detail-item">
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                        <div><h4>Email</h4><p style="color: var(--text-light);">hello@nutribite.com</p><p style="color: var(--text-light);">support@nutribite.com</p></div>
+                    </div>
+                    
+                    <div class="support-hours">
+                        <h4><i class="fas fa-headset"></i> Customer Support</h4>
+                        <p><strong>Monday – Friday:</strong> 9:00 AM – 6:00 PM</p>
+                        <p><strong>Saturday – Sunday:</strong> 10:00 AM – 4:00 PM</p>
+                        <p><strong>Response Time:</strong> Within 24 hours</p>
+                    </div>
+                    
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/nutribite_2024?igsh=MXBqbTBxdjF4MHVmbA==" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-x-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="contact-right">
+                    <!-- Google Map -->
+                    <div class="map-container">
+                        <iframe class="google-map-embed" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.146627398718!2d101.65337731475723!3d2.921548197892571!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cdb7a4e4d3b5c7%3A0x9a7f3f8c9e8d4b2a!2sCyberjaya%2C%20Selangor!5e0!3m2!1sen!2smy!4v1620000000000!5m2!1sen!2smy" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                    
+                    <!-- 🆕 顾客反馈表单 - 全新添加！ -->
+                    <div class="feedback-section">
+                        <h3><i class="fas fa-comment-dots"></i> Send Us Your Feedback</h3>
+                        <p style="color: var(--text-light); margin-bottom: 20px;">We'd love to hear about your experience, suggestions, or any issues you encountered.</p>
+                        
+                        <div class="feedback-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Your Name</label>
+                                    <input type="text" id="feedbackName" placeholder="e.g. Ahmad bin Abdullah">
+                                </div>
+                                <div class="form-group">
+                                    <label>Email Address</label>
+                                    <input type="email" id="feedbackEmail" placeholder="ahmad@example.com">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Feedback Type</label>
+                                <select id="feedbackType">
+                                    <option>Select feedback type</option>
+                                    <option>Product Suggestion</option>
+                                    <option>Delivery Experience</option>
+                                    <option>Website Issue</option>
+                                    <option>General Feedback</option>
+                                    <option>Compliment</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Your Message</label>
+                                <textarea id="feedbackMessage" rows="4" placeholder="Please share your feedback, suggestions, or concerns..."></textarea>
+                            </div>
+                            
+                            <button class="submit-feedback-btn" id="submitFeedbackBtn">
+                                <i class="fas fa-paper-plane"></i> Submit Feedback
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-logo">
+                    <h3>Nutri<span>Bite</span></h3>
+                    <p>Fresh. Balanced. Ready in Minutes.</p>
+                    <p>Ready-to-heat healthy meal bowls for modern Malaysians. 🇲🇾</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#" data-page="home">Home</a></li>
+                        <li><a href="#" data-page="products">Products</a></li>
+                        <li><a href="#" data-page="cart">Cart</a></li>
+                        <li><a href="#" data-page="policies">Policies</a></li>
+                        <li><a href="#" data-page="contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-envelope"></i> hello@nutribite.com</p>
+                    <p><i class="fas fa-phone"></i> +60 3-1234 5678</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2024 NutriBite Malaysia. All rights reserved. | Fresh. Balanced. Ready in Minutes.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+/* ===== 添加到现有 style.css 文件末尾 ===== */
+
+/* ===== Out of Stock 样式 ===== */
+.product-badge.out-of-stock-badge {
+    background: #6c757d;
+    color: white;
+}
+
+.availability.out-of-stock {
+    color: #dc3545;
+    background: rgba(220, 53, 69, 0.1);
+}
+
+.add-to-cart-btn.disabled {
+    background: #6c757d;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.add-to-cart-btn.disabled:hover {
+    background: #6c757d;
+    transform: none;
+    box-shadow: 0 8px 20px rgba(108, 117, 125, 0.25);
+}
+
+/* ===== 纯文字支付方式样式 ===== */
+.payment-methods-text {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin: 15px 0;
+}
+
+.payment-method-text {
+    border: 2px solid #eef2ee;
+    border-radius: 16px;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: white;
+    font-weight: 600;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.payment-method-text i {
+    color: var(--primary-green);
+    font-size: 1.2rem;
+}
+
+.payment-method-text:hover {
+    border-color: var(--primary-green);
+    background: rgba(27,77,62,0.02);
+    transform: translateY(-3px);
+}
+
+.payment-method-text.active {
+    border-color: var(--primary-green);
+    background: rgba(27,77,62,0.04);
+    box-shadow: 0 5px 15px rgba(27,77,62,0.08);
+    color: var(--primary-green);
+}
+
+/* 纯文字银行选项 */
+.bank-options-text {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.bank-option-text {
+    border: 2px solid #eef2ee;
+    border-radius: 12px;
+    padding: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: white;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.bank-option-text:hover {
+    border-color: var(--primary-green);
+    background: rgba(27,77,62,0.02);
+    transform: translateY(-2px);
+}
+
+.bank-option-text.active {
+    border-color: var(--primary-green);
+    background: rgba(27,77,62,0.04);
+    color: var(--primary-green);
+}
+
+/* 纯文字电子钱包选项 */
+.ewallet-options-text {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.ewallet-option-text {
+    border: 2px solid #eef2ee;
+    border-radius: 12px;
+    padding: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: white;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.ewallet-option-text:hover {
+    border-color: var(--primary-green);
+    background: rgba(27,77,62,0.02);
+    transform: translateY(-2px);
+}
+
+.ewallet-option-text.active {
+    border-color: var(--primary-green);
+    background: rgba(27,77,62,0.04);
+    color: var(--primary-green);
+}
+
+/* ===== 反馈表单样式 ===== */
+.contact-right {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.feedback-section {
+    background: white;
+    padding: 30px;
+    border-radius: 24px;
+    box-shadow: var(--shadow);
+}
+
+.feedback-section h3 {
+    color: var(--primary-green);
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.feedback-section h3 i {
+    color: var(--primary-green);
+}
+
+.feedback-form {
+    margin-top: 20px;
+}
+
+.submit-feedback-btn {
+    background: var(--primary-green);
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.submit-feedback-btn:hover {
+    background: var(--hover-green);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(27,77,62,0.25);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .payment-methods-text,
+    .bank-options-text,
+    .ewallet-options-text {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+}
